@@ -1,3 +1,4 @@
+const chalk = require("chalk");
 var readLine = require('readline-sync');
 
 var score = 0;
@@ -14,8 +15,16 @@ var questionThree = {
   question:"Does he like going to the gym? \n",
   answer:["Yes","Y"]
 }
+var questionFour = {
+  question:"Does he love Python? \n",
+  answer:["Yes","Y"]
+}
+var questionFive = {
+  question:"What's 8+6 (Just to prove you are not a bot) \n",
+  answer:["14","fourteen"]
+}
 
-var questions = [questionOne, questionTwo, questionThree]
+var questions = [questionOne, questionTwo, questionThree,questionFour,questionFive]
 
 var topScorers = [{
   name:"Jayasurya",
@@ -23,24 +32,24 @@ var topScorers = [{
 }]
 
 function welcome() {
-name = readLine.question("Hello.. What's your name? \n");
-console.log("\nHey there "+name+". Welcome to the Quiz App : DYKJ (Do you know Jayasurya)");
+name = readLine.question(chalk.bgCyan(" Hello.. What's your name? \n"));
+console.log(chalk.bgCyan("\nHey there "+name+". Welcome to the Quiz App : DYKJ (Do you know Jayasurya)"));
 }
 
 function play(question, answer) {
-  var userAns = readLine.question("\n"+question);
+  var userAns = readLine.question(chalk.yellow("\n"+question));
 
   var ansFlag = 0;
   for(var i=0; i<answer.length;i++) {
   if (userAns.toLowerCase() == answer[i].toLowerCase()) {
-    console.log("\nYayy!! That's correct ");
+    console.log(chalk.green("\nYayy!! That's correct "));
     score += 1;
     ansFlag = 1;
   }
   }
   if(ansFlag == 0) {
-    console.log("\nOops!! It's a wrong answer");
-    console.log("\nThe correct answer is \""+answer.join("\" or \"")+"\"");
+    console.log(chalk.red("\nOops!! It's a wrong answer"));
+    console.log(chalk.yellow("\nThe correct answer is \""+answer.join("\" or \"")+"\""));
   }
 
   console.log("\nCurrent Score: "+score);
@@ -54,7 +63,7 @@ function start() {
 }
 
 function finalScore() {
-  console.log("\nYour final score is "+score);
+  console.log(chalk.bgCyan("\n Your final score is " + score + " "));
 
   topScorers.push({name:name,score:score});
 
@@ -68,13 +77,15 @@ function finalScore() {
   }
 
   if(score>=maxScore){
-    console.log("\nWoah!! You are the new TOPSCORER.\nWell done.. You must be friends with Jayasurya.")
+    console.log(
+      chalk.green("\nWoah!! You are the new TOPSCORER.\nWell done.. You must be friends with Jayasurya ")
+    );
   }
-  else if(score>=1){
-    console.log("\nYou did better than the rest.")
+  else if(score>=3){
+    console.log(chalk.yellow("\nYou did better than the rest."));
   }
 
-  console.log("\nThank you for playing!!!")
+  console.log(chalk.bgCyan("\n Thank you for playing!!! "));
 }
 
 welcome()
