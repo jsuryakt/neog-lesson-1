@@ -5,7 +5,7 @@ var score = 0;
 var name;
 var questionOne = {
   question:"What is the name of the company where Jayasurya works?\n",
-  answer:["TCS","Tata Consultancy Services"]
+  answer:["digital.ai","experitest"]
 }
 var questionTwo = {
   question:"What's the name of his Home City?\n",
